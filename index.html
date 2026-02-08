@@ -1,1 +1,52 @@
-<!DOCTYPE html>\n<html lang="en">\n<head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>Valentine's Day Proposal</title>\n    <style>\n        body {\n            display: flex;\n            flex-direction: column;\n            align-items: center;\n            justify-content: center;\n            height: 100vh;\n            background-color: #ffcccb;\n            overflow: hidden;\n            position: relative;\n        }\n        h1 {\n            font-family: 'Cursive', sans-serif;\n            font-size: 3em;\n            color: #c71585;\n        }\n        .button {\n            padding: 15px 30px;\n            margin: 10px;\n            font-size: 1.5em;\n            border: none;\n            border-radius: 5px;\n            cursor: pointer;\n        }\n        .yes {\n            background-color: #32cd32;\n            color: white;\n        }\n        .no {\n            background-color: #ff4500;\n            color: white;\n        }\n        .falling-heart {\n            position: absolute;\n            animation: fall 5s linear infinite;\n            z-index: 0;\n        }\n        @keyframes fall {\n            0% {\n                transform: translateY(-100px);\n            }\n            100% {\n                transform: translateY(100vh);\n            }\n        }\n    </style>\n</head>\n<body>\n    <h1>Will You Be My Valentine?</h1>\n    <button class="button yes">Yes</button>\n    <button class="button no">No</button>\n    <audio id="bg-music" loop>\n        <source src="background-music.mp3" type="audio/mpeg">\n        Your browser does not support the audio element.\n    </audio>\n    <video width="320" height="240" controls>\n        <source src="video.mp4" type="video/mp4">\n        Your browser does not support the video tag.\n    </video>\n    <script>\n        document.getElementById('bg-music').play();\n        const noButton = document.querySelector('.no');\n        noButton.addEventListener('click', function() {\n            alert('Why not? 😢');\n            window.location.href = 'https://www.example.com/runaway'; // redirects to a different page\n        });\n        document.querySelector('.yes').addEventListener('click', function() {\n            alert('Yay! 💖'); // message on click\n        });\n        // Falling hearts animation\n        function createFallingHeart() {\n            const heart = document.createElement('img');\n            heart.src = 'heart.png'; // Use a heart image\n            heart.classList.add('falling-heart');\n            heart.style.left = Math.random() * 100 + 'vw';\n            document.body.appendChild(heart);\n            heart.addEventListener('animationend', () => heart.remove());\n        }\n        setInterval(createFallingHeart, 500); // Create a new heart every 500ms\n    </script>\n</body>\n</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine's Day</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #FF577F, #C850C0, #FFCC70);
+            animation: gradient 15s ease infinite;
+            color: white;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+        }
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .heart {
+            position: relative;
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            background-color: #FF4D4D;
+            transform: rotate(-45deg);
+            margin: 20px;
+        }
+        .heart::before, .heart::after {
+            content: '';
+            background-color: #FF4D4D;
+            border-radius: 50%;
+            position: absolute;
+            width: 100px;
+            height: 100px;
+        }
+        .heart::before {
+            top: -50px;
+            left: 0;
+        }
+        .heart::after {
+            left: 50px;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Happy Valentine's Day!</h1>
+    <div class="heart"></div>
+    <p>Celebrate love and affection.</p>
+</body>
+</html>
