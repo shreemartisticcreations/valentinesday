@@ -3,50 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Valentine's Day</title>
+    <title>Valentine's Day Proposal</title>
     <style>
         body {
-            background: linear-gradient(135deg, #FF577F, #C850C0, #FFCC70);
-            animation: gradient 15s ease infinite;
-            color: white;
-            font-family: 'Arial', sans-serif;
-            text-align: center;
-        }
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        .heart {
+            background-image: url('https://example.com/valentine-background.jpg'); /* Add your background image link */
+            background-size: cover;
+            overflow: hidden;
             position: relative;
-            display: inline-block;
-            width: 100px;
-            height: 100px;
-            background-color: #FF4D4D;
-            transform: rotate(-45deg);
+            text-align: center;
+            color: white;
+        }
+        h1 {
+            margin-top: 200px;
+            font-size: 50px;
+            animation: fade-in 2s;
+        }
+        @keyframes fade-in {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .button {
+            font-size: 24px;
+            padding: 10px 20px;
             margin: 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
         }
-        .heart::before, .heart::after {
-            content: '';
-            background-color: #FF4D4D;
-            border-radius: 50%;
-            position: absolute;
-            width: 100px;
-            height: 100px;
+        .yes {
+            background-color: #ff4d4d;
         }
-        .heart::before {
-            top: -50px;
-            left: 0;
+        .no {
+            background-color: #ff9999;
         }
-        .heart::after {
-            left: 50px;
-            top: 0;
+        .no:hover {
+            position: relative;
+            animation: run-away 0.5s infinite;
+        }
+        @keyframes run-away {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(20px, -20px); }
+            100% { transform: translate(0, 0); }
+        }
+        #video {
+            display: none;
+            margin-top: 30px;
         }
     </style>
 </head>
 <body>
-    <h1>Happy Valentine's Day!</h1>
-    <div class="heart"></div>
-    <p>Celebrate love and affection.</p>
+    <h1>Will You Be My Valentine?</h1>
+    <button class="button yes" onclick="playMusic()">Yes</button>
+    <button class="button no">No</button>
+    <audio id="romanticSong">
+        <source src="https://example.com/romantic-song.mp3" type="audio/mpeg">
+    </audio>
+    <video id="video" width="600" height="400" controls>
+        <source src="https://example.com/romantic-video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <script>
+        const yesButton = document.querySelector('.yes');
+        const noButton = document.querySelector('.no');
+        const video = document.getElementById('video');
+        const romanticSong = document.getElementById('romanticSong');
+
+        yesButton.addEventListener('click', function() {
+            romanticSong.play();
+            video.style.display = 'block';
+            video.play();
+        });
+    </script>
 </body>
 </html>
