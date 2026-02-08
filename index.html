@@ -3,76 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valentine's Day Proposal</title>
-    <style>
-        body {
-            background: url('path_to_romantic_background.jpg') no-repeat center center fixed;
-            background-size: cover;
-            position: relative;
-            overflow: hidden;
-        }
-        #hearts {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            pointer-events: none;
-        }
-        .heart {
-            position: absolute;
-            background: red; /* or change colors for variations */
-            width: 20px;
-            height: 20px;
-            border-radius: 50% 50% 0;
-            animation: fall linear infinite;
-        }
-        @keyframes fall {
-            0% {
-                transform: translateY(0);
-            }
-            100% {
-                transform: translateY(100vh);
-                opacity: 0;
-            }
-        }
-        #yesButton {
-            font-size: 20px;
-            transition: transform 0.2s;
-        }
-        #noButton {
-            font-size: 20px;
-        }
-    </style>
+    <title>Valentine's Day</title>
+    <audio id="myAudio" preload="auto">
+        <source src="path/to/your/music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
 </head>
 <body>
-    <h1>Will You Be My Valentine?</h1>
+    <h1>Happy Valentine’s Day!</h1>
     <button id="yesButton">Yes</button>
-    <button id="noButton">No</button>
-    <audio id="romanticMusic" src="path_to_music.mp3" autoplay loop></audio>
-    <video id="romanticVideo" src="path_to_video.mp4" autoplay loop style="display:none;"></video>
-    
     <script>
-        let noCounter = 0;
-        const noButton = document.getElementById('noButton');
         const yesButton = document.getElementById('yesButton');
-        
-        noButton.addEventListener('click', function() {
-            noCounter++;
-            if (noCounter === 1) noButton.textContent = "Are you Sure?";
-            else if (noCounter === 2) noButton.textContent = "Vishal, Please!";
-            else if (noCounter === 3) noButton.textContent = "Don't break my heart!";
-            else if (noCounter >= 4) {
-                noButton.style.display = 'none';
+        const audio = document.getElementById('myAudio');
+
+        yesButton.addEventListener('click', () => {
+            try {
+                audio.play().catch(error => {
+                    console.error('Error playing audio:', error);
+                    alert('Audio playback failed. Please try again later.');
+                });
+            } catch (e) {
+                console.error('Error encountered:', e);
+                alert('An unexpected error occurred.');
             }
         });
-
-        yesButton.addEventListener('click', function() {
-            this.style.transform = `scale(${1 + 0.1 * (this.clickCount || 0)})`;
-            this.clickCount = (this.clickCount || 0) + 1;
-        });
-
-        // Heart falling animation can be initiated here
     </script>
 </body>
 </html>
