@@ -6,73 +6,98 @@
     <title>Valentine's Day Proposal</title>
     <style>
         body {
-            background-image: url('https://example.com/valentine-background.jpg'); /* Add your background image link */
-            background-size: cover;
+            margin: 0;
+            padding: 0;
             overflow: hidden;
-            position: relative;
-            text-align: center;
-            color: white;
+            background: url('https://example.com/romantic-background.jpg') no-repeat center center fixed;
+            background-size: cover;
         }
-        h1 {
-            margin-top: 200px;
-            font-size: 50px;
-            animation: fade-in 2s;
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
         }
-        @keyframes fade-in {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        .hearts {
+            position: absolute;
+            pointer-events: none;
+            animation: fall 10s linear infinite;
         }
-        .button {
+        @keyframes fall {
+            0% {
+                top: -10%;
+                left: 0;
+            }
+            100% {
+                top: 100%;
+                left: calc(100% * var(--x));
+            }
+        }
+        .yes-button {
+            position: absolute;
+            bottom: 40%;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 15px 30px;
             font-size: 24px;
-            padding: 10px 20px;
-            margin: 20px;
+            background-color: #ff4081;
+            color: white;
             border: none;
-            border-radius: 10px;
             cursor: pointer;
         }
-        .yes {
-            background-color: #ff4d4d;
+        .no-button {
+            position: absolute;
+            bottom: 30%;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 15px 30px;
+            font-size: 24px;
+            background-color: #ff4081;
+            color: white;
+            border: none;
+            cursor: pointer;
         }
-        .no {
-            background-color: #ff9999;
-        }
-        .no:hover {
-            position: relative;
-            animation: run-away 0.5s infinite;
+        .no-button:hover {
+            animation: run-away 0.5s forwards;
         }
         @keyframes run-away {
-            0% { transform: translate(0, 0); }
-            50% { transform: translate(20px, -20px); }
-            100% { transform: translate(0, 0); }
+            0% { left: 50%; }
+            100% { left: calc(50% + 200px); }
         }
-        #video {
+        video {
             display: none;
-            margin-top: 30px;
+            position: absolute;
+            bottom: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            max-width: 600px;
         }
     </style>
 </head>
 <body>
-    <h1>Will You Be My Valentine?</h1>
-    <button class="button yes" onclick="playMusic()">Yes</button>
-    <button class="button no">No</button>
-    <audio id="romanticSong">
-        <source src="https://example.com/romantic-song.mp3" type="audio/mpeg">
-    </audio>
-    <video id="video" width="600" height="400" controls>
-        <source src="https://example.com/romantic-video.mp4" type="video/mp4">
+    <div class="overlay"></div>
+    <div class="hearts" style="--x: 0.1;"></div>
+    <button class="yes-button" onclick="playMusic()">Yes</button>
+    <button class="no-button">No</button>
+    <video id="proposal-video" controls>
+        <source src="your-video-source.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
-    <script>
-        const yesButton = document.querySelector('.yes');
-        const noButton = document.querySelector('.no');
-        const video = document.getElementById('video');
-        const romanticSong = document.getElementById('romanticSong');
 
-        yesButton.addEventListener('click', function() {
-            romanticSong.play();
-            video.style.display = 'block';
-            video.play();
-        });
+    <script>
+        function playMusic() {
+            const audio = new Audio('your-music-source.mp3');
+            audio.play();
+            document.getElementById('proposal-video').style.display = 'block';
+        }
+
+        document.querySelector('.hearts').innerHTML = Array.from({length: 25}).map(() => {
+            const size = Math.random() * (40 - 10) + 10;
+            return `<div class="heart" style="position: absolute; width: ${size}px; height: ${size}px; background: red; border-radius: 50%; left: ${Math.random() * 100}%;"></div>`;
+        }).join('');
     </script>
 </body>
 </html>
